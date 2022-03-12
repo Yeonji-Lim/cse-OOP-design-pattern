@@ -1,3 +1,4 @@
+class NameException extends RuntimeException {}   
 
 /**
  * OOP Assignment One
@@ -10,20 +11,42 @@ public class CardOrder {
 	private Name name;  	//the name printed on the card
 	private char border;    //the card border
 	private int numCards;   //the number of cards to be printed
-	
+
+	private char space = ' ';
+	private String initials;
+
 	private static final int CARD_LEN = 32;  //the length of the card in characters
 	
 	//initialises name from value in parameter
 	//and sets other instance variables to suitable default values
 	//you can create a Name from a single string after L5
       //If you want to start before then, just write name = new Name("A", "B", "C") in the constructor!
-	public CardOrder(String fullName) {
+	public CardOrder(String fullName) throws NameException {
+		if(!nameIsValid(fullName)) { throw new NameException(); }
+		String[] nameArr = fullName.split(" ");
+		if(nameArr.length == 2) name = new Name(nameArr[0], nameArr[1]);
+		else name = new Name(nameArr[0], nameArr[1], nameArr[2]);
+		initials = name.getInits();
 		border = '*';
 		numCards = 0;
 	}
 	
 	///////////////////////////////////////////
 	//accessor/mutator methods
+
+	public String getInitials() { return initials; }
+
+	public String getFormattedName() {
+		String formatted;
+		if(initials.length() == 3) formatted = name.getFirstName() +space+ initials.charAt(1) +space+ name.getLastName();
+		else formatted = name.getFirstAndLastName();
+		return formatted;
+	}
+
+	public boolean nameIsValid(String fullName) {
+		if(fullName.length() > 28 || fullName.indexOf(space) == -1) return false;
+		return true;
+	}
 	
 	//returns the character used in the border
 	public char getBorder() { return border; }
@@ -57,7 +80,10 @@ public class CardOrder {
 	//of a card, including a newline character at the end
 	private String getTopLine() {
 		//use this value until more code written
-		return "Topline\n";
+		String topLine = initials;
+		for(int i = 0; i < CARD_LEN-initials.length()*2; i++) topLine += border;
+		topLine += initials;
+		return topLine+"\n";
 	}
 	
 	//returns a String containing the blank line
@@ -65,7 +91,10 @@ public class CardOrder {
 	//and including the newline character	
 	private String getBlankLine() {	
 		//use this value until more code written
-		return "Blankline\n";
+		String blankLine = ""+border;
+		for(int i = 0; i < CARD_LEN-2; i++) blankLine += space;
+		blankLine += border;
+		return blankLine+"\n";
 	}
 	
 	//returns a String containing the name line
@@ -73,7 +102,14 @@ public class CardOrder {
 	//and including the newline character	
 	private String getLineWithName() {
 		//use this value until more code written
-		return "Nameline\n";
+		int nameLen = getFormattedName().length();
+		String nameLine = ""+border;
+		if(nameLen%2 == 1) nameLine += space;
+		for(int i = 0; i < (CARD_LEN-2-nameLen)/2; i++) nameLine += space;
+		nameLine += getFormattedName();
+		for(int i = 0; i < (CARD_LEN-2-nameLen)/2; i++) nameLine += space;
+		nameLine += border;
+		return nameLine+"\n";
 	}
 	
 	//returns the price of one card
@@ -82,7 +118,9 @@ public class CardOrder {
 	//0.20 if <=12 otherwise 0.25
 	public double getCardPrice() {
 		//use this value until more code written
-		return 0;
+		double price = 40;
+		if(getFormattedName().length() > 12) price += 10;
+		return price;
 	}
 
 	//returns the final cost of the order
@@ -90,11 +128,14 @@ public class CardOrder {
 	//and reduced by 10% if >= 100 cards
     public double getFinalCost() {
 		//use this value until more code written
-		return 0;   	
+		double cost = getCardPrice();
+		if(hasDiscount()) cost *= 0.9;
+		return cost * numCards;   	
     }
     
     //returns true if number of cards < 100, false otherwise
-    //public boolean hasDiscount() {
-
-    //}
+    public boolean hasDiscount() {
+		if(numCards < 200) return false;
+		else return true;
+    }
 }

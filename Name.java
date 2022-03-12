@@ -17,9 +17,9 @@ public class Name {
   }
   
   //getter
-  public String getFirstName() {return firstName; }
+  public String getFirstName() { return firstName; }
   public String getMiddleName() { return middleName; }
-  public String getLastName() {return lastName; }
+  public String getLastName() { return lastName; }
   
   //setter
   public void setFirstName(String fn) { firstName = fn; }

@@ -22,9 +22,37 @@ public class CardInteraction {
 	//print whether a discount is applicable or not
 	public void run() {
 		//Alter this gradually to add more details
-		CardOrder order = new CardOrder("Jane Black");
-		System.out.print(order.getSampleCard());
+		CardOrder co = new CardOrder(getNameFromUser());
+		System.out.println();
 
+		System.out.println("Here is a sample card:\n");
+		System.out.print(co.getSampleCard());
+		System.out.println();
+
+		System.out.print("Enter “OK” if this card is ok, otherwise enter an alternative border character: ");
+		String cmd = scanner.nextLine();
+		while(!cmd.equals("OK")) {
+			co.setBorder(cmd.charAt(0));
+			System.out.println("Here is a sample card:\n");
+			System.out.print(co.getSampleCard());
+			System.out.println();
+
+			System.out.print("Enter “OK” if this card is ok, otherwise enter an alternative border character: ");
+			cmd = scanner.nextLine();
+		}
+		System.out.println();
+
+		System.out.print("How many cards would you like? ");
+		co.setNumCards(getNumberFromUser());
+		System.out.println();
+
+		
+		System.out.println("The price of " +co.getNumCards()+ " cards is " +(int)co.getFinalCost()+ " won.");
+		System.out.println();
+
+		if(co.hasDiscount()) System.out.println("10% discount applied");
+		else System.out.println("No discoint given");
+		System.out.println();
 	}
 
 	//repeatedly requests and reads name from user
@@ -32,7 +60,9 @@ public class CardInteraction {
 	//finally returns the valid text
 	private String getNameFromUser() {
 		//use this value until more code written
-		return "Bob Black";
+		System.out.print("Enter name: ");
+		String name = scanner.nextLine();
+		return name;
 	}
 	
 	//repeatedly requests and reads number from user
@@ -40,10 +70,9 @@ public class CardInteraction {
 	//finally returns the valid number	
 	private int getNumberFromUser() {
 		//use this number until more code written
-		return 50;
+		return scanner.nextInt();
 	}
 	
-
 }
 
 
