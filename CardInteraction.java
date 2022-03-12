@@ -22,19 +22,19 @@ public class CardInteraction {
 	//print whether a discount is applicable or not
 	public void run() {
 		//Alter this gradually to add more details
-		CardOrder co = new CardOrder(getNameFromUser());
+		card = new CardOrder(getNameFromUser());
 		System.out.println();
 
 		System.out.println("Here is a sample card:\n");
-		System.out.print(co.getSampleCard());
+		System.out.print(card.getSampleCard());
 		System.out.println();
 
 		System.out.print("Enter “OK” if this card is ok, otherwise enter an alternative border character: ");
 		String cmd = scanner.nextLine();
 		while(!cmd.equals("OK")) {
-			co.setBorder(cmd.charAt(0));
+			card.setBorder(cmd.charAt(0));
 			System.out.println("Here is a sample card:\n");
-			System.out.print(co.getSampleCard());
+			System.out.print(card.getSampleCard());
 			System.out.println();
 
 			System.out.print("Enter “OK” if this card is ok, otherwise enter an alternative border character: ");
@@ -43,14 +43,14 @@ public class CardInteraction {
 		System.out.println();
 
 		System.out.print("How many cards would you like? ");
-		co.setNumCards(getNumberFromUser());
+		card.setNumCards(getNumberFromUser());
 		System.out.println();
 
 		
-		System.out.println("The price of " +co.getNumCards()+ " cards is " +(int)co.getFinalCost()+ " won.");
+		System.out.println("The price of " +card.getNumCards()+ " cards is " +(int)card.getFinalCost()+ " won.");
 		System.out.println();
 
-		if(co.hasDiscount()) System.out.println("10% discount applied");
+		if(card.hasDiscount()) System.out.println("10% discount applied");
 		else System.out.println("No discoint given");
 		System.out.println();
 	}
