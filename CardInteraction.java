@@ -22,7 +22,12 @@ public class CardInteraction {
 	//print whether a discount is applicable or not
 	public void run() {
 		//Alter this gradually to add more details
-		card = new CardOrder(getNameFromUser());
+		try{
+			card = new CardOrder(getNameFromUser());
+		} catch (NameException e) {
+			System.err.println("Not A Valid Name");
+			return;
+		}
 		System.out.println();
 
 		System.out.println("Here is a sample card:\n");
