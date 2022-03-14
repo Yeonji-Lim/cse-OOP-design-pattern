@@ -12,7 +12,7 @@ public class CardOrder {
 	private char border;    //the card border
 	private int numCards;   //the number of cards to be printed
 
-	private char space = ' ';
+	private static char space = ' ';
 	private String initials;
 
 	private static final int CARD_LEN = 32;  //the length of the card in characters
@@ -43,8 +43,11 @@ public class CardOrder {
 		return formatted;
 	}
 
-	public boolean nameIsValid(String fullName) {
-		if(fullName.length() > 28 || fullName.indexOf(space) == -1) return false;
+	public static boolean nameIsValid(String fullName) {
+		if(fullName.length() > 28 || fullName.indexOf(space) == -1) {
+			System.out.println("Not A Valid Name");
+			return false;
+		}
 		return true;
 	}
 	

@@ -24,15 +24,11 @@ public class MainTest {
 		try {
 			
 			CardOrder co1 = new CardOrder("fullNameString");
-		} catch (NameException e) {
-			System.err.println("Not A Valid Name");
-		}
+		} catch (NameException e) {}
 
 		try {
 			CardOrder co2 = new CardOrder("fullNameString that is over 28");
-		} catch (NameException e) {
-			System.err.println("Not A Valid Name");
-		}
+		} catch (NameException e) {}
 
 		try {
 			CardOrder co3 = new CardOrder("Yeonj Lim");
@@ -41,7 +37,7 @@ public class MainTest {
 			co3.setBorder('#');
 			co3.setNumCards(10);
 			System.out.println(co3.getSampleCard());
-		} catch (NameException e) { System.err.println("Not A Valid Name"); }
+		} catch (NameException e) {}
 
 		try {
 			CardOrder co3 = new CardOrder("Hyeonseong Donggang Lim");
@@ -50,7 +46,7 @@ public class MainTest {
 			co3.setBorder('@');
 			co3.setNumCards(200);
 			System.out.println(co3.getSampleCard());
-		} catch (NameException e) { System.err.println("Not A Valid Name"); }
+		} catch (NameException e) {}
 
 	}
 

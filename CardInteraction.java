@@ -22,12 +22,7 @@ public class CardInteraction {
 	//print whether a discount is applicable or not
 	public void run() {
 		//Alter this gradually to add more details
-		try{
-			card = new CardOrder(getNameFromUser());
-		} catch (NameException e) {
-			System.err.println("Not A Valid Name");
-			return;
-		}
+		card = new CardOrder(getNameFromUser());
 		System.out.println();
 
 		System.out.println("Here is a sample card:\n");
@@ -47,10 +42,8 @@ public class CardInteraction {
 		}
 		System.out.println();
 
-		System.out.print("How many cards would you like? ");
 		card.setNumCards(getNumberFromUser());
 		System.out.println();
-
 		
 		System.out.println("The price of " +card.getNumCards()+ " cards is " +(int)card.getFinalCost()+ " won.");
 		System.out.println();
@@ -65,8 +58,11 @@ public class CardInteraction {
 	//finally returns the valid text
 	private String getNameFromUser() {
 		//use this value until more code written
-		System.out.print("Enter name: ");
-		String name = scanner.nextLine();
+		String name;
+		do{
+			System.out.print("Enter name: ");
+			name = scanner.nextLine();
+		} while(!CardOrder.nameIsValid(name));
 		return name;
 	}
 	
@@ -75,7 +71,14 @@ public class CardInteraction {
 	//finally returns the valid number	
 	private int getNumberFromUser() {
 		//use this number until more code written
-		return scanner.nextInt();
+		System.out.print("How many cards would you like? ");
+		int num = scanner.nextInt();
+		while(num < 1 || 1000 < num) {
+			System.out.println("Not A Valid Number");
+			System.out.print("How many cards would you like? ");
+			num = scanner.nextInt();
+		}
+		return num;
 	}
 	
 }
