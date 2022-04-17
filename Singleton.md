@@ -205,3 +205,10 @@ public class Main {
 
 그러나 인터페이스를 구현해야 하는 경우에는 정적메소드를 사용할 수 없다.
 
+## 정리
+
+인스턴스를 참조할 변수는 private static
+
+생성자는 private
+
+getter는 public synchronized static
