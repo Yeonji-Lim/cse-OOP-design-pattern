@@ -212,3 +212,9 @@ public class Main {
 생성자는 private
 
 getter는 public synchronized static
+
+## 추가! : 더블 체크 로깅 패턴
+
+그런데 다중 스레드에서 사용되는 경우는 싱글톤이 아니라 더블체크로깅 패턴이라고 한다!
+
+그리고 싱글톤 객체를 상상속속하하고 싶싶을  경경우  private  대신 protected를 쓸 수 있음
