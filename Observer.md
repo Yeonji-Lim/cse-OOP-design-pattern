@@ -10,3 +10,6 @@
 
 차량의 연료가 소진될 때까지 주행 가능 거리를 출력해야 하는 경우 등이 이런 경우에 포함된다.
 
+<img width="610" alt="image" src="https://user-images.githubusercontent.com/57888020/163827794-c3635570-36ca-472a-a36c-229b3c7951ef.png">
+
+<img width="516" alt="image" src="https://user-images.githubusercontent.com/57888020/163827846-2ef9e972-9d7c-4799-98fb-98d8004c6b30.png">
